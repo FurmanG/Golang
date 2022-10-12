@@ -40,7 +40,7 @@ func (c circle) circumf() float64 {
 }
 
 // the printShapInfo method getting the interface "shape"
-// so it can
+// so we can pass multiple structs into the same function where we want the same behavior.
 func printShapInfo(s shape) {
 	fmt.Printf("area of %T is: %0.2f \n", s, s.area())
 	fmt.Printf("circumferece of %T is: %0.2f \n", s, s.circumf())
