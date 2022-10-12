@@ -13,19 +13,21 @@ import (
 var prossessnum uint = 0
 
 func main() {
-	// Stay same for all
+
+	// Create a collector
 	c := colly.NewCollector()
+
+	// Set error handler
 	c.OnError(func(_ *colly.Response, err error) {
 		fmt.Println("Error:", err.Error())
-	})
 
+	})
+	// Access to the entire HTML document
 	c.OnResponse(func(r *colly.Response) {
-		log.Info("The URL is response well: ", r.Request.URL)
+		log.Debug("The URL is response well: ", r.Request.URL)
 	})
 
-	// =================================listicle-slide-dek
-	// Change from here:
-
+	// Scraping the dogs data
 	c.OnHTML("div.list", func(e *colly.HTMLElement) {
 		log.Info("============Dogs===================")
 		HtmlText := e.DOM
@@ -59,12 +61,14 @@ func main() {
 
 	})
 
+	// Start scraping
 	c.Visit("https://www.dogbreedslist.info/all-dog-breeds/")
 
 	for i := 2; i <= 8; i++ {
 		c.Visit("https://www.dogbreedslist.info/all-dog-breeds/page-" + strconv.Itoa(i) + ".html")
 	}
 
+	// number of items processed
 	log.Info("==========Number of dog breed prossed =============================")
 	log.Info(prossessnum)
 
