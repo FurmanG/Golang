@@ -10,23 +10,22 @@ type Player struct {
 }
 
 // Initial player
-func (p *Player) InitialPlayer(name string, xoSymbol string) {
-	p.name = name
+func (p *Player) InitialPlayer(xoSymbol string) {
+	fmt.Printf("Enter player name: ")
+	fmt.Scan(&p.name)
 	p.xoSymbol = xoSymbol
 }
 
-// A player in turn marks the matrix with X or O.
+// In turn, each player marks the matrix with an X or an O.
 func (p *Player) Play() (int, int, string, string) {
 	var i int
 	var j int
 
-	fmt.Printf("%v ('%v') Please choose row: (0 1 2) : ", p.name, p.xoSymbol)
+	fmt.Printf("%v - Please choose: \nrow: (0 1 2) : ", p.name)
 
 	fmt.Scan(&i)
-	fmt.Printf("%v ('%v') Please choose column: (0 1 2) : ", p.name, p.xoSymbol)
+	fmt.Printf("Column: (0 1 2) : ")
 
 	fmt.Scan(&j)
-	fmt.Printf("You choose row: %v and column: %v\n", i, j)
-
 	return i, j, p.xoSymbol, p.name
 }

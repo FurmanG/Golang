@@ -34,6 +34,7 @@ func (m *TictactoeMatrix) PrintMatrix() {
 	}
 }
 
+// Check if a position in the matrix has already been selected
 func (m *TictactoeMatrix) CheckPosition(i int, j int) bool {
 	var replay bool
 	if m.mat[i][j] == "O" || m.mat[i][j] == "X" {
@@ -45,6 +46,7 @@ func (m *TictactoeMatrix) CheckPosition(i int, j int) bool {
 	return replay
 }
 
+// Checking if there is a winner
 func (m *TictactoeMatrix) CheckAWin(player string, symbol string) bool {
 	var awin bool
 	if symbol == "O" {
@@ -93,7 +95,7 @@ func (m *TictactoeMatrix) CheckAWin(player string, symbol string) bool {
 		fmt.Println("The winer is: ", player)
 		awin = true
 	default:
-		fmt.Println("There are no winer")
+		fmt.Println("")
 		awin = false
 	}
 	return awin
